@@ -47,11 +47,11 @@ Man könnte einzelne Schriften aber auch auskommentieren...
 
 
 Nun das Terminal neustarten...
-Nun sollte aus:
+Nun sollte aus:   
 ![grafik](https://github.com/Mesrine88/myPS/assets/87695029/650d7e8a-b039-4af7-b102-b996c7806d27)
 
 Die PowerShell / Terminal in etwa so aussehen...
-![grafik](https://github.com/Mesrine88/myPS/assets/87695029/0dd5a5c1-b8e2-47df-8555-bdc4baa4df2d)
+![grafik](https://github.com/Mesrine88/myPS/assets/87695029/ec94d5a7-8ee8-44f6-8204-ba3af779e92a)
 
 Wobei zufällig bestimmt wird, welcher Style eingesetzt werden soll. Wer diesen anpassen möchte kann es folgendermaßen:
 PowerShell öffnen:
