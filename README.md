@@ -26,6 +26,8 @@ winget install git.git -s winget
 **WICHTIG**
 Danach das Terminal neustarten, wieder elevated also das Terminal (Als Administrator ausführen), da git sonst nicht verfügbar ist
 
+___
+
 Set-Location -Path C:\Users\Administrator\Documents\
 
 git clone https://github.com/Mesrine88/myPS.git
@@ -47,11 +49,15 @@ Man könnte einzelne Schriften aber auch auskommentieren...
 
 
 Nun das Terminal neustarten...
-Nun sollte aus:   
+
+Nun sollte die PowerShell / das Terminal statt:   
 ![grafik](https://github.com/Mesrine88/myPS/assets/87695029/650d7e8a-b039-4af7-b102-b996c7806d27)
 
-Die PowerShell / Terminal in etwa so aussehen...
+in etwa so aussehen...
 ![grafik](https://github.com/Mesrine88/myPS/assets/87695029/ec94d5a7-8ee8-44f6-8204-ba3af779e92a)
+
+
+---
 
 Wobei zufällig bestimmt wird, welcher Style eingesetzt werden soll. Wer diesen anpassen möchte kann es folgendermaßen:
 PowerShell öffnen:
@@ -64,5 +70,8 @@ Such die Zeile, die mit oh-my-posh --init --shell pwsh beginnt, kommentiere dies
 Speichern und Terminal neustarten...
 
 ![grafik](https://github.com/Mesrine88/myPS/assets/87695029/e94b49a9-7da3-4ea1-b05e-27e81ffdf1d4)
+
+![grafik](https://github.com/Mesrine88/myPS/assets/87695029/110c02b8-2363-4f2b-a5d1-222c5497ad49)
+
 
 Oder eigene Anpassungen in der settings.json und $PROFILE vornehmen.
