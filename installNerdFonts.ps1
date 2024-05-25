@@ -67,5 +67,3 @@ Get-ChildItem -Path $extractionPath -Recurse -Include *.ttf, *.otf | ForEach-Obj
     # Clean up the extracted files
     Remove-Item -Path $zipFile -Force
 }
-
-
