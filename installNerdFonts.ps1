@@ -3,6 +3,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 Install-Module -Name Terminal-Icons -Repository PSGallery -Force -Scope CurrentUser
 winget install Git.Git -s winget
 winget install GitHub.cli -s winget
+winget install --id=Fastfetch-cli.Fastfetch  -e
 
 # Define the URLs and file paths
 $urls = @(
