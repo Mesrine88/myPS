@@ -22,6 +22,9 @@ winget install GH -s winget
 
 winget install git.git -s winget
 
+![grafik](https://github.com/Mesrine88/myPS/assets/87695029/7f09ab79-e033-4536-a1ec-cbed747471ae)
+
+
 git clone https://github.com/Mesrine88/myPS.git
 
 .\install.ps1
