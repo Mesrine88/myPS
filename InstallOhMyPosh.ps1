@@ -24,8 +24,9 @@ $destinationImagePath = Join-Path -Path $profpath -ChildPath "Desk3.jpg"
 Copy-Item -Path $sourceImagePath -Destination $destinationImagePath -Force
 
 $sourceModulesPath = Join-Path -Path (Get-Location) -ChildPath "Modules"
-# $destinationModulesPath = Join-Path -Path $profpath -ChildPath "Modules"
+$destinationModulesPath = C:\Windows\System32\WindowsPowerShell\v1.0\Modules
 Copy-Item -Path $sourceModulesPath -Destination $profpath -Recurse -Force
+Copy-Item -Path $sourceModulesPath -Destination $destinationModulesPath -Recurse -Force
 
 # Schritt 4: Kopieren der settings.json-Datei
 $sourceSettingsPath = Join-Path -Path (Get-Location) -ChildPath "settings.json"
