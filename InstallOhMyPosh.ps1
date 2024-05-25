@@ -6,8 +6,7 @@
 
 # Schritt 2: Ermitteln des Benutzerverzeichnisses
 $userProfilePath = [Environment]::GetFolderPath("UserProfile")
-$userPSProfPath = "\Documents\WindowsPowerShell\"
-$profpath = $userProfilePath+$userPSProfPath
+$PsProfilePath = [Environment]::GetFolderPath("UserProfile") + "\Documents\WindowsPowerShell\"
 
 if (!(Test-Path -Path $PROFILE)) {
     New-Item -ItemType File -Path $PROFILE -Force
@@ -19,13 +18,13 @@ $destinationProfilePath = $PROFILE
 Copy-Item -Path $sourceProfilePath -Destination $destinationProfilePath -Force
 
 $sourceImagePath = Join-Path -Path (Get-Location) -ChildPath "Desk3.jpg"
-$destinationImagePath = Join-Path -Path $profpath -ChildPath "Desk3.jpg"
+$destinationImagePath = Join-Path -Path $PsProfilePath -ChildPath "Desk3.jpg"
 
 Copy-Item -Path $sourceImagePath -Destination $destinationImagePath -Force
 
 $sourceModulesPath = Join-Path -Path (Get-Location) -ChildPath "Modules"
 $destinationModulesPath = C:\Windows\System32\WindowsPowerShell\v1.0\Modules
-Copy-Item -Path $sourceModulesPath -Destination $profpath -Recurse -Force
+Copy-Item -Path $sourceModulesPath -Destination $PsProfilePath -Recurse -Force
 Copy-Item -Path $sourceModulesPath -Destination $destinationModulesPath -Recurse -Force
 
 # Schritt 4: Kopieren der settings.json-Datei
@@ -63,3 +62,8 @@ if ($linesToModify.Count -gt 0) {
 } else {
     Write-Output "Keine Zeilen gefunden, die mit '# oh-my-posh --init --shell pwsh' beginnen."
 }
+
+# Schritt 6: Kopieren der conf.json-Datei für FastFetch
+$sourceSettingsPath = Join-Path -Path (Get-Location) -ChildPath "conf.json"
+$destinationImagePath = Join-Path -Path $PsProfilePath -ChildPath "conf.json"
+Copy-Item -Path $sourceSettingsPath -Destination $destinationSettingsPath -Force
