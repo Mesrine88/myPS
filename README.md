@@ -42,11 +42,27 @@ cd .\myPS\
 Dadurch, dass mehrere Nerdfonts geladen, entpackt und installiert werden, dauert das natürlich ein wenig. 
 Man könnte einzelne Schriften aber auch auskommentieren...
 
-Nun das Terminal neustarten...
+![grafik](https://github.com/Mesrine88/myPS/assets/87695029/0423c29f-2f57-4d50-8f31-6c47d8cfe302)
+![grafik](https://github.com/Mesrine88/myPS/assets/87695029/6890331e-f4e4-4094-917e-c4bd12566bd8)
 
+
+Nun das Terminal neustarten...
+Nun sollte aus:
 ![grafik](https://github.com/Mesrine88/myPS/assets/87695029/650d7e8a-b039-4af7-b102-b996c7806d27)
 
+Die PowerShell / Terminal in etwa so aussehen...
+![grafik](https://github.com/Mesrine88/myPS/assets/87695029/0dd5a5c1-b8e2-47df-8555-bdc4baa4df2d)
 
+Wobei zufällig bestimmt wird, welcher Style eingesetzt werden soll. Wer diesen anpassen möchte kann es folgendermaßen:
+PowerShell öffnen:
+notepad $PROFILE
 
+Such die Zeile, die mit oh-my-posh --init --shell pwsh beginnt, kommentiere diese aus und entferne das '# ' einer anderen Zeile...
 
+![grafik](https://github.com/Mesrine88/myPS/assets/87695029/b4915abb-79e5-4ef2-b3c0-c9b004e23d65)
 
+Speichern und Terminal neustarten...
+
+![grafik](https://github.com/Mesrine88/myPS/assets/87695029/e94b49a9-7da3-4ea1-b05e-27e81ffdf1d4)
+
+Oder eigene Anpassungen in der settings.json und $PROFILE vornehmen.
