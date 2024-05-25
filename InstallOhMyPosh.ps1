@@ -24,8 +24,8 @@ $destinationImagePath = Join-Path -Path $profpath -ChildPath "Desk3.jpg"
 Copy-Item -Path $sourceImagePath -Destination $destinationImagePath -Force
 
 $sourceModulesPath = Join-Path -Path (Get-Location) -ChildPath "Modules"
-$destinationModulesPath = Join-Path -Path $profpath -ChildPath "Modules"
-Copy-Item -Path $sourceModulesPath -Destination $destinationModulesPath -Recurse -Force
+# $destinationModulesPath = Join-Path -Path $profpath -ChildPath "Modules"
+Copy-Item -Path $sourceModulesPath -Destination $profpath -Recurse -Force
 
 # Schritt 4: Kopieren der settings.json-Datei
 $sourceSettingsPath = Join-Path -Path (Get-Location) -ChildPath "settings.json"
