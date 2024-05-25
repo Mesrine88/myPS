@@ -49,10 +49,20 @@ foreach ($url in $urls) {
     }
     $zipArchive.Dispose()
 
-    # Install the fonts
-    Get-ChildItem -Path $extractionPath -Recurse -Include *.ttf, *.otf | ForEach-Object {
-        Copy-Item -Path $_.FullName -Destination $fontInstallPath -Force
-    }
+# Install fonts from the extracted directory
+Get-ChildItem -Path $extractionPath -Recurse -Include *.ttf, *.otf | ForEach-Object {
+    $fontPath = $_.FullName
+    $fontName = $_.Name
+    $destPath = Join-Path -Path $fontInstallPath -ChildPath $fontName
+
+    # Copy font to Fonts directory
+    Copy-Item -Path $fontPath -Destination $destPath -Force
+
+    # Add font to registry
+    $fontRegKey = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"
+    $fontEntryName = $fontName -replace "\.[^\.]+$", ""
+    Set-ItemProperty -Path $fontRegKey -Name $fontEntryName -Value $fontName
+}
     
     # Clean up the extracted files
     Remove-Item -Path $zipFile -Force
