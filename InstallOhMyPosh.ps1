@@ -65,5 +65,5 @@ if ($linesToModify.Count -gt 0) {
 
 # Schritt 6: Kopieren der conf.json-Datei für FastFetch
 $sourceSettingsPath = Join-Path -Path (Get-Location) -ChildPath "conf.json"
-$destinationImagePath = Join-Path -Path $PsProfilePath -ChildPath "conf.json"
+$destinationSettingsPath = $PsProfilePath+"conf.json"
 Copy-Item -Path $sourceSettingsPath -Destination $destinationSettingsPath -Force
