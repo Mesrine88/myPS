@@ -1,5 +1,11 @@
-# Define URLs for font ZIP files
-$fontUrls = @(
+# Install necessary tools
+winget install JanDeDobbeleer.OhMyPosh -s winget
+Install-Module -Name Terminal-Icons -Repository PSGallery -Force -Scope CurrentUser
+winget install Git.Git -s winget
+winget install GitHub.cli -s winget
+
+# Define the URLs and file paths
+$urls = @(
     "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/3270.zip",
     "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/DroidSansMono.zip",
     "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip",
@@ -8,53 +14,48 @@ $fontUrls = @(
     "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/NerdFontsSymbolsOnly.zip"
 )
 
-# Define download and extraction paths
-$downloadPath = "$env:TEMP\nerd-fonts"
-$extractionPath = "$downloadPath\extracted"
+$tempPath = [System.IO.Path]::GetTempPath()
+$extractionPath = Join-Path -Path $tempPath -ChildPath "nerd-fonts\extracted"
+$fontInstallPath = "$env:SystemRoot\Fonts"
 
-# Create directories if they don't exist
-if (-Not (Test-Path -Path $downloadPath)) {
-    New-Item -Path $downloadPath -ItemType Directory | Out-Null
-}
+# Create the extraction path if it doesn't exist
 if (-Not (Test-Path -Path $extractionPath)) {
-    New-Item -Path $extractionPath -ItemType Directory | Out-Null
+    New-Item -Path $extractionPath -ItemType Directory
 }
 
-# Download font ZIP files
-foreach ($url in $fontUrls) {
-    $fileName = [System.IO.Path]::GetFileName($url)
-    $destination = Join-Path -Path $downloadPath -ChildPath $fileName
-    Invoke-WebRequest -Uri $url -OutFile $destination
+
+# Download, extract and install each font
+foreach ($url in $urls) {
+    $zipFile = Join-Path -Path $tempPath -ChildPath ([System.IO.Path]::GetFileName($url))
+    
+    # Download the zip file
+    Invoke-WebRequest -Uri $url -OutFile $zipFile
+    
+    # Extract the zip file, manually handling overwrites
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $zipArchive = [System.IO.Compression.ZipFile]::OpenRead($zipFile)
+    foreach ($entry in $zipArchive.Entries) {
+        $destinationPath = Join-Path -Path $extractionPath -ChildPath $entry.FullName
+        if (Test-Path -Path $destinationPath) {
+            Remove-Item -Path $destinationPath -Force
+        }
+        if ($entry.Name) {  # Skip directory entries
+            $entryStream = $entry.Open()
+            $destinationStream = [System.IO.File]::Create($destinationPath)
+            $entryStream.CopyTo($destinationStream)
+            $entryStream.Close()
+            $destinationStream.Close()
+        }
+    }
+    $zipArchive.Dispose()
+
+    # Install the fonts
+    Get-ChildItem -Path $extractionPath -Recurse -Include *.ttf, *.otf | ForEach-Object {
+        Copy-Item -Path $_.FullName -Destination $fontInstallPath -Force
+    }
+    
+    # Clean up the extracted files
+    Remove-Item -Path $zipFile -Force
 }
 
-# Function to install fonts
-function Install-Font {
-    param (
-        [string]$fontPath
-    )
 
-    # Copy font to Fonts folder
-    $fontsFolder = [System.IO.Path]::Combine($env:SystemRoot, "Fonts")
-    Copy-Item -Path $fontPath -Destination $fontsFolder
-
-    # Add font to registry
-    $fontName = [System.IO.Path]::GetFileNameWithoutExtension($fontPath)
-    $fontExtension = [System.IO.Path]::GetExtension($fontPath)
-    $fontRegistryName = "$fontName$fontExtension"
-    $fontRegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"
-    Set-ItemProperty -Path $fontRegistryPath -Name $fontRegistryName -Value $fontPath
-}
-
-# Extract and install fonts
-Add-Type -AssemblyName System.IO.Compression.FileSystem
-foreach ($zipFile in Get-ChildItem -Path $downloadPath -Filter *.zip) {
-    [System.IO.Compression.ZipFile]::ExtractToDirectory($zipFile.FullName, $extractionPath)
-}
-
-# Install all extracted fonts
-foreach ($fontFile in Get-ChildItem -Path $extractionPath -Recurse -Filter *.ttf, *.otf) {
-    Install-Font -fontPath $fontFile.FullName
-}
-
-# Clean up
-Remove-Item -Path $downloadPath -Recurse -Force
