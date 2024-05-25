@@ -14,7 +14,7 @@ ___
 ## Zusammengefasst
 elevated PowerShell bzw. das Terminal (Als Administrator ausführen)
 
-Set-Location -Path C:\Users\Administrator
+Set-Location -Path C:\Users\Administrator\Documents\
 
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
 
