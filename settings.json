@@ -46,12 +46,12 @@
     {
         "defaults": 
         {
-            "backgroundImage": "D:\\Modification\\WallpaperWS14\\Desk3.jpg",
+            "backgroundImage": "C:\\Users\\Administrator\\Documents\\WindowsPowerShell\\Desk3.jpg",
             "backgroundImageOpacity": 0.34,
             "elevate": true,
             "font": 
             {
-                "face": "DroidSansM Nerd Font Mono"
+                "face": "FiraCode Nerd Font Mono"
             },
             "opacity": 100,
             "tabTitle": "Big-Boss",
@@ -72,7 +72,7 @@
                 "experimental.retroTerminalEffect": true,
                 "font": 
                 {
-                    "face": "OpenDyslexicM Nerd Font"
+                    "face": "Inconsolata Nerd Font"
                 },
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
