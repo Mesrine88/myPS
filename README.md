@@ -13,9 +13,15 @@ ___
 
 ## Zusammengefasst
 elevated PowerShell bzw. das Terminal (Als Administrator ausführen)
+
 Set-Location -Path C:\Users\Administrator
+
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+
 winget install GH -s winget
+
 winget install git.git -s winget
+
 git clone https://github.com/Mesrine88/myPS.git
+
 .\install.ps1
