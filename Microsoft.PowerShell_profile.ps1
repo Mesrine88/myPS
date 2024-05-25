@@ -32,3 +32,7 @@ Import-Module posh-git
 # oh-my-posh --init --shell pwsh --config "$env:POSH_THEMES_PATH/thecyberden.omp.json" | Invoke-Expression
 # oh-my-posh --init --shell pwsh --config "$env:POSH_THEMES_PATH/wholespace.omp.json" | Invoke-Expression
 
+# Fastfetch
+# Schritt 2: Ermitteln des Benutzerverzeichnisses
+$userProfilePath = [Environment]::GetFolderPath("UserProfile") + "\Documents\WindowsPowerShell\conf.json"
+fastfetch -c $userProfilePath
