@@ -1,5 +1,5 @@
 
-# Skriptausführung erlauben
+# SkriptausfÃ¼hrung erlauben
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
 
 # Nerdfonts installieren
@@ -9,4 +9,5 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
 .\InstallOhMyPosh.ps1
 
 # beenden
-Write-Host "Sie können das Fenster schließen..."
+Write-Host "Sie kÃ¶nnen das Fenster nun schlieÃŸen..." -ForegroundColor Green
+Write-Host "Biite starten Sie das Terminal neu, damit OhMyPosh geladen werden kann..." -ForegroundColor Green
