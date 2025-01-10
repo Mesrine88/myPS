@@ -1,6 +1,6 @@
 # Style default PowerShell Console
 $shell = $Host.UI.RawUI
-$shell.WindowTitle= "BigBoss_PS"
+$shell.WindowTitle= "PS"
 
 ## Load custom theme for Windows Terminal
 Import-Module -Name Terminal-Icons
